@@ -1,0 +1,11 @@
+/home/tarik/Documentos/Projetos/Projetos_Spring/StarWars/src/main/java/com/starwars/api/model/Planeta.java
+/home/tarik/Documentos/Projetos/Projetos_Spring/StarWars/src/main/java/com/starwars/api/services/PlanetaService.java
+/home/tarik/Documentos/Projetos/Projetos_Spring/StarWars/src/main/java/com/starwars/api/services/ConsumerApiSwService.java
+/home/tarik/Documentos/Projetos/Projetos_Spring/StarWars/src/main/java/com/starwars/api/controllers/PlanetaSwApiController.java
+/home/tarik/Documentos/Projetos/Projetos_Spring/StarWars/src/main/java/com/starwars/api/responses/Response.java
+/home/tarik/Documentos/Projetos/Projetos_Spring/StarWars/src/main/java/com/starwars/api/repositories/PlanetaRepository.java
+/home/tarik/Documentos/Projetos/Projetos_Spring/StarWars/src/main/java/com/starwars/api/model/PlanetaSwApiFilms.java
+/home/tarik/Documentos/Projetos/Projetos_Spring/StarWars/src/main/java/com/starwars/api/responses/PlanetaNaoEncontradoException.java
+/home/tarik/Documentos/Projetos/Projetos_Spring/StarWars/src/main/java/com/starwars/api/StarWarsApplication.java
+/home/tarik/Documentos/Projetos/Projetos_Spring/StarWars/src/main/java/com/starwars/api/controllers/PlanetaController.java
+/home/tarik/Documentos/Projetos/Projetos_Spring/StarWars/src/main/java/com/starwars/api/model/PlanetaSwApi.java

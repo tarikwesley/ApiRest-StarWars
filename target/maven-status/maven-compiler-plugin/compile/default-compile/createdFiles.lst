@@ -1,0 +1,11 @@
+com/starwars/api/services/ConsumerApiSwService.class
+com/starwars/api/services/PlanetaService.class
+com/starwars/api/model/Planeta.class
+com/starwars/api/responses/Response.class
+com/starwars/api/repositories/PlanetaRepository.class
+com/starwars/api/model/PlanetaSwApi.class
+com/starwars/api/model/PlanetaSwApiFilms.class
+com/starwars/api/responses/PlanetaNaoEncontradoException.class
+com/starwars/api/controllers/PlanetaController.class
+com/starwars/api/controllers/PlanetaSwApiController.class
+com/starwars/api/StarWarsApplication.class
