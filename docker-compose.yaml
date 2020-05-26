@@ -1,9 +1,7 @@
 version: "3.7"
 services:
   springboot:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     environment:
       - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/starwarsapi
     container_name: apirest-starwars
@@ -17,7 +15,7 @@ services:
       - spring-mongo-net
   mongo:
     image: mongo:latest
-    container_name: apirest-mongodb
+    container_name: apirest-starwars-mongodb
     ports:
       - 27017:27017
     command: mongod --logpath=/dev/null # --quiet
