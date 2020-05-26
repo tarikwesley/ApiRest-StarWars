@@ -17,7 +17,7 @@ services:
       - spring-mongo-net
   mongo:
     image: mongo:latest
-    container_name: apirest-starwars-mongodb
+    container_name: apirest-mongodb
     ports:
       - 27017:27017
     command: mongod --logpath=/dev/null # --quiet
