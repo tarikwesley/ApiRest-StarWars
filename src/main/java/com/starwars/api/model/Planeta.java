@@ -1,69 +1,29 @@
 package com.starwars.api.model;
 
-import javax.validation.constraints.NotBlank;
-
+import com.starwars.api.dto.PlanetaDTO;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Document("planeta")
 public class Planeta {
-	
-	@Id
-	private String id;
-	private String nome;
-	private String clima;
-	private String terreno;
-	private Integer aparicoesEmFilmes;
-	
-	public Planeta() {
-		
-	}
+    @Id
+    private String id;
+    private String nome;
+    private String clima;
+    private String terreno;
+    private Integer aparicoesEmFilmes;
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	@NotBlank(message = "Nome não pode ser vazio!")
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
-	@NotBlank(message = "Clima não pode ser vazio!")
-	public String getClima() {
-		return clima;
-	}
-
-	public void setClima(String clima) {
-		this.clima = clima;
-	}
-	
-	@NotBlank(message = "Terreno não pode ser vazio!")
-	public String getTerreno() {
-		return terreno;
-	}
-
-	public void setTerreno(String terreno) {
-		this.terreno = terreno;
-	}
-
-	public Integer getAparicoesFilmes() {
-		return aparicoesEmFilmes;
-	}
-
-	public void setAparicoesFilmes(Integer aparicoesFilmes) {
-		this.aparicoesEmFilmes = aparicoesFilmes;
-	}
-	
-	
-	
-	
-
+    public Planeta(PlanetaDTO planetaDTO) {
+        this.nome = planetaDTO.getNome();
+        this.clima = planetaDTO.getClima();
+        this.terreno = planetaDTO.getTerreno();
+    }
 }
