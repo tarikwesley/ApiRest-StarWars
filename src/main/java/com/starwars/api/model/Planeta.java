@@ -15,7 +15,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("planeta")
 public class Planeta {
     @Id
-    private String id;
+    private Long id;
     private String nome;
     private String clima;
     private String terreno;

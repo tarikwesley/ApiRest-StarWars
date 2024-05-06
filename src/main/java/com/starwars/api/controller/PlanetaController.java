@@ -53,12 +53,12 @@ public class PlanetaController {
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<ResponseDTO<Planeta>> listarPorId(@PathVariable(name = "id") String id) {
+    public ResponseEntity<ResponseDTO<Planeta>> listarPorId(@PathVariable(name = "id") Long id) {
         return new ResponseEntity<>(new ResponseDTO<>(this.service.listarPorId(id)), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<ResponseDTO<String>> removerPlaneta(@PathVariable(name = "id") String id) {
+    public ResponseEntity<ResponseDTO<String>> removerPlaneta(@PathVariable(name = "id") Long id) {
         this.service.removerPlaneta(id);
         return new ResponseEntity<>(new ResponseDTO<>("Removido com sucesso!"), HttpStatus.NO_CONTENT);
     }
