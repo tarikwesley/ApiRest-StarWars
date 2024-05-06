@@ -13,7 +13,6 @@ Criada para cadastrar planetas do Star Wars passando nome, clima e terreno. E pa
     ```
     Creating apirest-starwars-mongodb ... done
     Creating apirest-starwars         ... done
-
     ```
 Caso o processo do Mongo ```apirest-starwars-mongodb``` der algum erro. Tente desativar o serviço do mongo na maquina local e tente novamente o comando anterior.
 Exemplo: para desativar o serviço do Mongo na maquina local Linux:

@@ -1,6 +1,6 @@
 FROM openjdk:8-alpine
 
-RUN apk update && apk add bash
+RUN apk update && apk --no-cache add bash
 
 RUN mkdir -p /opt/app
 
