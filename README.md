@@ -1,5 +1,5 @@
 # API REST STAR WARS 
-Criada para cadastrar planetas do Star Wars passando nome, clima e terreno. E para consumir uma API externa sendo a [API publica do StarWars](https://swapi.dev/) para obter a quantidade de vezes que o planeta cadastrado apareceu nos filmes da franquia.Para o desenvolvimento foi utilizado Java 8, Spring Boot, Mongodb e Docker.
+Criada para cadastrar planetas do Star Wars passando nome, clima e terreno. E para consumir uma API externa sendo a [API publica do StarWars](https://swapi.dev/) para obter a quantidade de vezes que o planeta cadastrado apareceu nos filmes da franquia. Para o desenvolvimento foi utilizado Java 8, Spring Boot, Mongodb e Docker.
 
 ## Processos para execução
 - Baixe e instale o [Docker](https://docs.docker.com/install/) e o [Git](https://git-scm.com/downloads).
@@ -20,16 +20,40 @@ Basta executar o comnando
 ```sudo systemctl stop mongod```
 Assim que estiver tudo ok continue o prcesso.
 
-- Após este processo, a API poderá ser testada no link ```http://localhost:8081/api/planetas``` para exibir os dados da API interna ou no link ```http://localhost:8081/swapi/planetas/?pagina=1``` para exibir os dados da API externa contendo os nomes e os filmes que o planeta ta presente.
+- Após este processo, a API poderá ser testada no link ```http://localhost:8081/api/planetas``` para exibir todos os planetas com os dados da API interna ou no link ```http://localhost:8081/starwars-api/planetas``` para exibir os dados da API externa contendo os nomes e os filmes que cada planeta ta presente.
 - Para testes de requisições na API, pode-se utilizar o [Postman](https://www.getpostman.com/downloads/).
 - Para encerrar a aplicação utilize o comando ```docker-compose down```.
 
 ## Links para requisições na API
+- POST: ```http://localhost:8081/api/planetas``` (adiciona um novo planeta)
+  - Exemplo:
+```
+{
+    "nome": "Mustafar",
+    "clima": "quente",
+    "terreno": "vulcões, rios de lava, montanhas, cavernas"
+}
+
+```
+- Esse é o retorno para o planeta adicionado
+```
+{
+    "data": {
+        "id": "1",
+        "nome": "Mustafar",
+        "clima": "quente",
+        "terreno": "vulcões, rios de lava, montanhas, cavernas",
+        "aparicoesFilmes": 1
+    },
+    "erros": null
+}
+```
+
 - GET: ```http://localhost:8081/api/planetas``` (Retorna todos os planetas)
 ``` 
 [
     {
-        "id": "5e2f6c649a90812d6c324407",
+        "id": "1",
         "nome": "Alderaan",
         "clima": "temperate",
         "terreno": "grasslands, mountains",
@@ -37,7 +61,7 @@ Assim que estiver tudo ok continue o prcesso.
     }
     ,
     {
-        "id": "5e2f6c649a90812d6c324406",
+        "id": "2",
         "nome": "Coruscant",
         "clima": "temperate",
         "terreno": "cityscape, mountains",
@@ -45,11 +69,12 @@ Assim que estiver tudo ok continue o prcesso.
     }
 ]
 ```
+
 - GET: ```http://localhost:8081/api/planetas/{id}``` (Retorna o planeta pertencente ao id informado)
-    - Exemplo: ```http://localhost:8081/api/planetas/5e2f6c649a90812d6c324407```
+    - Exemplo: ```http://localhost:8081/api/planetas/1```
 ``` 
 {
-    "id": "5e2f6c649a90812d6c324407",
+    "id": "1",
     "nome": "Alderaan",
     "clima": "temperate",
     "terreno": "grasslands, mountains",
@@ -60,15 +85,26 @@ Assim que estiver tudo ok continue o prcesso.
     - Exemplo:  ```http://localhost:8081/api/planetas/?nome=Coruscant```
 ``` 
 {
-    "id": "5e2f6c649a90812d6c324406",
+    "id": "2",
     "nome": "Coruscant",
     "clima": "temperate",
     "terreno": "cityscape, mountains",
     "aparicoesEmFilmes": 4
 }
 ```
-- GET: ```http://localhost:8081/swapi/planetas/?pagina={pagina}``` (Retorna o nome e os filmes de cada planeta  da API Externa do StarWars que estão na página informada)
-    - Exemplo:  ```http://localhost:8081/swapi/planetas/?pagina=1```
+- DELETE: ```http://localhost:8081/api/planetas/{id}``` (Deleta o planeta pertencente ao id informado)
+  - Exemplo:  ```http://localhost:8081/api/planetas/13```
+```
+{
+    "data": "Removido com sucesso!",
+    "erros": null
+}
+
+```
+
+## Links para requisições na API Externa do Star Wars
+- GET: ```http://localhost:8081/starwars-api/planetas``` (Retorna todos os planetas com os dados de nome e os filmes em que o planeta é exibido da API Externa do StarWars)
+   
 ``` 
 {
     "data": {
@@ -150,10 +186,9 @@ Assim que estiver tudo ok continue o prcesso.
     },
     "erros": null
 }
-
 ```
-- GET: ```http://localhost:8081/swapi/planetas/{id}``` (Retorna o nome e os filmes do planeta da API Externa do StarWars pertencente ao id informado)
-    - Exemplo:  ```http://localhost:8081/swapi/planeta/13```
+- GET: ```http://localhost:8081/starwars-api/planetas/{id}``` (Retorna o nome e os filmes em que o planeta é exibido da API Externa do StarWars pertencente ao id informado)
+    - Exemplo:  ```http://localhost:8081/starwars-api/planeta/13```
 ``` 
 {
     "data": {
@@ -164,37 +199,15 @@ Assim que estiver tudo ok continue o prcesso.
     },
     "erros": null
 }
-
 ```
-- POST: ```http://localhost:8081/api/planetas``` (adiciona um novo planeta)
-```
--Adiciona um planeta
+- GET: ```http://localhost:8081/starwars-api/planetas/?nome={nome}``` (Retorna o planeta pertencente ao nome informado)
+  - Exemplo:  ```http://localhost:8081/starwars-api/planetas/?nome=Coruscant```
+``` 
 {
-    "nome": "Mustafar",
-    "clima": "quente",
-    "terreno": "vulcões, rios de lava, montanhas, cavernas"
+    "id": "2",
+    "nome": "Coruscant",
+    "clima": "temperate",
+    "terreno": "cityscape, mountains",
+    "aparicoesEmFilmes": 4
 }
-
-```
-```
-- Esse é o retorno para o planeta adicionado
-{
-    "data": {
-        "id": "5ecd87650bb0d560970d1510",
-        "nome": "Mustafar",
-        "clima": "quente",
-        "terreno": "vulcões, rios de lava, montanhas, cavernas",
-        "aparicoesFilmes": 1
-    },
-    "erros": null
-}
-```
-- DELETE: ```http://localhost:8081/api/planetas/{id}``` (Deleta o planeta pertencente ao id informado)
-    - Exemplo:  ```http://localhost:8081/api/planetas/5e2f6c649a90812d6c324407```
-```
-{
-    "data": "Removido com sucesso!",
-    "erros": null
-}
-
 ```
