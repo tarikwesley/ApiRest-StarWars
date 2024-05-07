@@ -24,6 +24,9 @@ Assim que estiver tudo ok continue o prcesso.
 - Para testes de requisições na API, pode-se utilizar o [Postman](https://www.getpostman.com/downloads/).
 - Para encerrar a aplicação utilize o comando ```docker-compose down```.
 
+## Link da Doc Swagger
+- http://localhost:8081/swagger-ui.html
+
 ## Links para requisições na API
 - POST: ```http://localhost:8081/api/planetas``` (adiciona um novo planeta)
   - Exemplo:
