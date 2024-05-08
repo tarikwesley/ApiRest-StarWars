@@ -12,10 +12,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Document("planeta")
+@Document(collation = "planeta")
 public class Planeta {
     @Id
-    private Long id;
+    private String id;
     private String nome;
     private String clima;
     private String terreno;

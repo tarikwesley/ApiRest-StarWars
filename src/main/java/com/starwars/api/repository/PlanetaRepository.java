@@ -4,6 +4,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.starwars.api.model.Planeta;
 
-public interface PlanetaRepository extends MongoRepository<Planeta, Long> {
+public interface PlanetaRepository extends MongoRepository<Planeta, String> {
     Planeta findByNome(String nome);
 }

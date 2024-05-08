@@ -47,11 +47,11 @@ public class PlanetaService {
         return this.planetaRepository.findByNome(nome);
     }
 
-    public Planeta listarPorId(Long id) {
+    public Planeta listarPorId(String id) {
         return this.planetaRepository.findById(id).orElseThrow(() -> new StarWarsException("Não existe planeta com esse id."));
     }
 
-    public void removerPlaneta(Long id) {
+    public void removerPlaneta(String id) {
         this.planetaRepository.deleteById(id);
     }
 }
