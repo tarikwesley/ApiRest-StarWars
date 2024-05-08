@@ -48,7 +48,7 @@ public class PlanetaController {
     }
 
     @GetMapping(path = "/nome")
-    public ResponseEntity<ResponseDTO<Planeta>> listarPorNome(@RequestParam(name = "nome") String nome) {
+    public ResponseEntity<ResponseDTO<Planeta>> listarPorNome(@RequestParam(name = "search") String nome) {
         return new ResponseEntity<>(new ResponseDTO<>(this.service.listarPorNome(nome)), HttpStatus.OK);
     }
 

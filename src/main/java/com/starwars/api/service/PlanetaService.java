@@ -32,7 +32,8 @@ public class PlanetaService {
         } else {
             novoPlaneta.setAparicoesEmFilmes(planetaStarWarsApiFilmsDTO.getResults().get(0).getFilms().size());
         }
-        return this.planetaRepository.save(novoPlaneta);
+        this.planetaRepository.save(novoPlaneta);
+        return novoPlaneta;
     }
 
     public List<Planeta> listarPlanetas() {
@@ -52,6 +53,9 @@ public class PlanetaService {
     }
 
     public void removerPlaneta(String id) {
+        if (id == null || id.isEmpty()) {
+            throw new IllegalArgumentException("O ID não pode ser nulo ou vazio.");
+        }
         this.planetaRepository.deleteById(id);
     }
 }

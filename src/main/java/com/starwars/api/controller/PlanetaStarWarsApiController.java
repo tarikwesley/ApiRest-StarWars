@@ -33,7 +33,7 @@ public class PlanetaStarWarsApiController {
     }
 
     @GetMapping("/nome")
-    public ResponseEntity<ResponseDTO<PlanetaStarWarsApiFilmsDTO>> listarPorNome(@RequestParam(name = "nome") String nome) {
+    public ResponseEntity<ResponseDTO<PlanetaStarWarsApiFilmsDTO>> listarPorNome(@RequestParam(name = "search") String nome) {
         return ResponseEntity.ok(new ResponseDTO<>(this.service.listarPorNome(nome)));
     }
 }
