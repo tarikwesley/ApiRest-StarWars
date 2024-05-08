@@ -30,7 +30,7 @@ public class ConsumerApiStarWarsService {
         }
     }
 
-    public PlanetaStarWarsApiDTO listarPorId(int id) {
+    public PlanetaStarWarsApiDTO listarPorId(Long id) {
         String apiUrl = starWarsApiBaseUrl + "{id}/";
         try {
             return this.restTemplate.getForObject(apiUrl, PlanetaStarWarsApiDTO.class, id);

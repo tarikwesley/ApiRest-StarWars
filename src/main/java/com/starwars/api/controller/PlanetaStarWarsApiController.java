@@ -28,7 +28,7 @@ public class PlanetaStarWarsApiController {
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<ResponseDTO<PlanetaStarWarsApiDTO>> listarPorId(@PathVariable(name = "id") int id) {
+    public ResponseEntity<ResponseDTO<PlanetaStarWarsApiDTO>> listarPorId(@PathVariable(name = "id") Long id) {
         return ResponseEntity.ok(new ResponseDTO<>(this.service.listarPorId(id)));
     }
 
