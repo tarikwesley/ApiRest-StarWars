@@ -1,16 +1,19 @@
 [JAVA_BADGE]:https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white
 [SPRING_BADGE]: https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white
 [MONGO_BADGE]:https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white
-
+[DOCKER_BADGE]:https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white
+[SWAGGER_BADGE]:https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white
 <p align="center">
 <img src="src/main/resources/static/darth-vader.svg" alt="darth vader helmet image">
 </p>
 
-<h1 align="center" style="font-weight: bold;">API REST STAR WARS  <?xml version="1.0" ?></h1>
+<h1 align="center" style="font-weight: bold;">STAR WARS REST API<?xml version="1.0" ?></h1>
 
 ![java][JAVA_BADGE]
 ![spring][SPRING_BADGE]
 ![mongo][MONGO_BADGE]
+![docker][DOCKER_BADGE]
+![swagger][SWAGGER_BADGE]
 
 <p align="center">
  <a href="#started">Getting Started</a> • 
@@ -45,17 +48,17 @@
 - When you obtain the following status below, you will be able to test the application.
 
     ```bash
-    Creating apirest-starwars-mongodb ... done
-    Creating apirest-starwars         ... done
+    Creating starwars-mongodb ... done
+    Creating starwars-rest-api ... done
     ```
-If the Mongo process ```apirest-starwars-mongodb``` gives an error. Try disabling the mongo service on the local machine and try the previous command again.
+If the Mongo process ```starwars-mongodb``` gives an error. Try disabling the mongo service on the local machine and try the previous command again.
 Example: to disable the Mongo service on the local Linux machine:
 Just run the command:
 ```sudo systemctl stop mongod```
 
 Once everything is ok, continue the process.
 
-- After this process, the API can be tested at the link ```http://localhost:8081/api/planetas``` to display all planets with data from the internal API or at the link ```http:// localhost:8081/starwars-api/planetas``` to display data from the external API containing the names and films that each planet is present in.
+- After this process, the API can be tested at the link ```http://localhost:8081/api/planets``` to display all planets with data from the internal API or at the link ```http:// localhost:8081/starwars-api/planets``` to display data from the external API containing the names and films that each planet is present in.
 - To test API requests, you can use [Postman](https://www.getpostman.com/downloads/).
 - To close the application use the command ``` docker-compose down```.
 
@@ -67,22 +70,22 @@ Once everything is ok, continue the process.
 
 <h3>📍 Internal API</h2>
 
-| Route                                           | Description                                                                                          |
-|-------------------------------------------------|------------------------------------------------------------------------------------------------------|
-| <kbd>POST /api/planetas</kbd>                   | Adds a new planet. [Request details](#post-planet-detail)                                            |
-| <kbd>GET /api/planetas</kbd>                    | Returns all planets info. See [response details](#get-planets-detail)                                |
-| <kbd>GET /api/planetas/{id}</kbd>               | Returns the planet belonging to the given id info. See [response details](#get-planet-id-detail)     |              |
-| <kbd>GET /api/planetas/name?search={name}</kbd> | Returns the planet belonging to the given name info. See [response details](#get-planet-name-detail) |
+| Route                                          | Description                                                                                          |
+|------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| <kbd>POST /api/planets</kbd>                   | Create a new planet. [Request details](#post-planet-detail)                                          |
+| <kbd>GET /api/planets</kbd>                    | Returns all planets info. See [response details](#get-planets-detail)                                |
+| <kbd>GET /api/planets/{id}</kbd>               | Returns the planet belonging to the given id info. See [response details](#get-planet-id-detail)     |              |
+| <kbd>GET /api/planets/name?search={name}</kbd> | Returns the planet belonging to the given name info. See [response details](#get-planet-name-detail) |
 
 
-- <h3 id="post-planet-detail">POST /api/planetas</h3>
+- <h3 id="post-planet-detail">POST /api/planets</h3>
 
 **REQUEST**
 ```json
     {
-        "nome": "Mustafar",
-        "clima": "quente",
-        "terreno": "vulcões, rios de lava, montanhas, cavernas"
+        "name": "Mustafar",
+        "climate": "warm",
+        "terrain": "volcanoes, lava rivers, mountains, caves"
     }
 ``` 
 
@@ -91,74 +94,74 @@ Once everything is ok, continue the process.
 {
     "data": {
         "id": "663aa97246ab9c7530885e72",
-        "nome": "Mustafar",
-        "clima": "quente",
-        "terreno": "vulcões, rios de lava, montanhas, cavernas",
-        "aparicoesFilmes": 1
+        "name": "Mustafar",
+        "climate": "warm",
+        "terrain": "volcanoes, lava rivers, mountains, caves",
+        "filmsAppearances": 1
     },
-    "erros": null
+    "errors": null
 }
 ```
 
-- <h3 id="get-planets-detail">GET /api/planetas</h3>
+- <h3 id="get-planets-detail">GET /api/planets</h3>
 
 **RESPONSE**
 ```json
 [
     {
         "id": "663aa9be46ab9c7530885e73",
-        "nome": "Alderaan",
-        "clima": "temperate",
-        "terreno": "grasslands, mountains",
-        "aparicoesEmFilmes": 2
+        "name": "Alderaan",
+        "climate": "temperate",
+        "terrain": "grasslands, mountains",
+        "filmsAppearances": 2
     }
     ,
     {
         "id": "663aa9d246ab9c7530885e74",
-        "nome": "Coruscant",
-        "clima": "temperate",
-        "terreno": "cityscape, mountains",
-        "aparicoesEmFilmes": 4
+        "name": "Coruscant",
+        "climate": "temperate",
+        "terrain": "cityscape, mountains",
+        "filmsAppearances": 4
     }
 ]
 ```
 
-- <h3 id="get-planet-id-detail">GET /api/planetas/663aa9be46ab9c7530885e73</h3>
+- <h3 id="get-planet-id-detail">GET /api/planets/663aa9be46ab9c7530885e73</h3>
 
 **RESPONSE**
 ```json
 {
     "id": "663aa9be46ab9c7530885e73",
-    "nome": "Alderaan",
-    "clima": "temperate",
-    "terreno": "grasslands, mountains",
-    "aparicoesEmFilmes": 2
+    "name": "Alderaan",
+    "climate": "temperate",
+    "terrain": "grasslands, mountains",
+    "filmsAppearances": 2
 }
 ```
 
-- <h3 id="get-planet-name-detail">GET /api/planetas/nome?search=Coruscant</h3>
+- <h3 id="get-planet-name-detail">GET /api/planets/name?search=Coruscant</h3>
 
 **RESPONSE**
 ```json
 {
     "id": "663aa9d246ab9c7530885e74",
-    "nome": "Coruscant",
-    "clima": "temperate",
-    "terreno": "cityscape, mountains",
-    "aparicoesEmFilmes": 4
+    "name": "Coruscant",
+    "climate": "temperate",
+    "terrain": "cityscape, mountains",
+    "FilmsAppearances": 4
 }
 ```
 
 <h2>📍 External API</h2>
 
-| Route                                                    | Description                                                                                                                                                                      |
-|----------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <kbd>GET /starwars-api/planetas</kbd>                    | Returns all planets with the name data and the movies the planet is shown in from the StarWars External API. See [response details](#get-planets-detail-starwars-api)            |
-| <kbd>GET /starwars-api/planetas/{id}</kbd>               | Returns the name and films in which the planet is shown from the StarWars External API belonging to the given id. See [response details](#get-planet-id-detail-starwars-api)     |
-| <kbd>GET /starwars-api/planetas/name?search={name}</kbd> | Returns the name and films in which the planet is shown from the StarWars External API belonging to the given name. See [response details](#get-planet-name-detail-starwars-api) |
+| Route                                                   | Description                                                                                                                                                                      |
+|---------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <kbd>GET /starwars-api/planets</kbd>                    | Returns all planets with the name data and the movies the planet is shown in from the StarWars External API. See [response details](#get-planets-detail-starwars-api)            |
+| <kbd>GET /starwars-api/planets/{id}</kbd>               | Returns the name and films in which the planet is shown from the StarWars External API belonging to the given id. See [response details](#get-planet-id-detail-starwars-api)     |
+| <kbd>GET /starwars-api/planets/name?search={name}</kbd> | Returns the name and films in which the planet is shown from the StarWars External API belonging to the given name. See [response details](#get-planet-name-detail-starwars-api) |
 
 
-- <h3 id="get-planets-detail-starwars-api">GET /starwars-api/planetas</h3>
+- <h3 id="get-planets-detail-starwars-api">GET /starwars-api/planets</h3>
 
 **RESPONSE**
 ```json
@@ -240,11 +243,11 @@ Once everything is ok, continue the process.
             }
         ]
     },
-    "erros": null
+    "errors": null
 }
 ```
 
-- <h3 id="get-planet-id-detail-starwars-api">GET /starwars-api/planetas/13</h3>
+- <h3 id="get-planet-id-detail-starwars-api">GET /starwars-api/planets/13</h3>
 
 **RESPONSE**
 ```json
@@ -255,11 +258,11 @@ Once everything is ok, continue the process.
             "http://swapi.dev/api/films/6/"
         ]
     },
-    "erros": null
+    "errors": null
 }
 ```
 
-- <h3 id="get-planet-name-detail-starwars-api">GET /starwars-api/planetas/name?search=Bespin</h3>
+- <h3 id="get-planet-name-detail-starwars-api">GET /starwars-api/planets/name?search=Bespin</h3>
 
 **RESPONSE**
 ```json

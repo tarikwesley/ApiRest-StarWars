@@ -22,13 +22,15 @@ public class SwaggerConfiguration {
                 .apis(RequestHandlerSelectors.basePackage("com.starwars.api"))
                 .paths(PathSelectors.any())
                 .build()
-                .apiInfo(informacoesApi());
+                .apiInfo(apiInfo());
     }
 
-    private ApiInfo informacoesApi() {
-        return new ApiInfo("API REST STAR WARS", "Criada para cadastrar planetas do Star Wars passando nome, clima e terreno. E para consumir uma API externa sendo " +
-                "a API publica do StarWars para obter a quantidade de vezes que o planeta cadastrado apareceu nos filmes da franquia. " + "Para o desenvolvimento foi utilizado Java 8," +
-                " Spring Boot, Mongodb e Docker.", "v1", "Api - Livre", new Contact("Tarik Wesley", "https://github.com/tarikwesley", "starwars@.com")
-                , null, null, new ArrayList<>());
+    private ApiInfo apiInfo() {
+        return new ApiInfo("STAR WARS REST API", "Created to register Star Wars planets by passing name," +
+                "climate and terrain. And to consume an external API with being the StarWars public API to obtain " +
+                "the number of times the registered planet appeared in the franchise's films. Java 8 was used for " +
+                "development, Spring Boot, Mongodb and Docker.", "v1", "Api - Free",
+                new Contact("Tarik Wesley", "https://github.com/tarikwesley", "starwars@email.com"),
+                null, null, new ArrayList<>());
     }
 }

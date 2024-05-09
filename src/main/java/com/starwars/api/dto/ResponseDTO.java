@@ -11,13 +11,13 @@ import java.util.List;
 @NoArgsConstructor
 public class ResponseDTO<T> {
     private T data;
-    private List<String> erros;
+    private List<String> errors;
 
-    public ResponseDTO(T planeta) {
-        this.data = planeta;
+    public ResponseDTO(T planet) {
+        this.data = planet;
     }
 
-    public ResponseDTO(List<String> erros) {
-        this.erros = erros;
+    public ResponseDTO(List<String> errors) {
+        this.errors = errors;
     }
 }

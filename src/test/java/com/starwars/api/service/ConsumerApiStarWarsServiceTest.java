@@ -1,7 +1,7 @@
 package com.starwars.api.service;
 
-import com.starwars.api.dto.PlanetaStarWarsApiDTO;
-import com.starwars.api.dto.PlanetaStarWarsApiFilmsDTO;
+import com.starwars.api.dto.PlanetStarWarsApiDTO;
+import com.starwars.api.dto.PlanetStarWarsApiFilmsDTO;
 import com.starwars.api.exception.StarWarsException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,62 +34,62 @@ class ConsumerApiStarWarsServiceTest {
     }
 
     @Test
-    void deveRetornarCorretamenteTodosOsPlanetas() {
-        PlanetaStarWarsApiFilmsDTO planetas = new PlanetaStarWarsApiFilmsDTO();
-        when(restTemplate.getForObject((String) isNull(), eq(PlanetaStarWarsApiFilmsDTO.class))).thenReturn(planetas);
+    void shouldCorrectlyReturnAllPlanets() {
+        PlanetStarWarsApiFilmsDTO planets = new PlanetStarWarsApiFilmsDTO();
+        when(restTemplate.getForObject((String) isNull(), eq(PlanetStarWarsApiFilmsDTO.class))).thenReturn(planets);
 
-        PlanetaStarWarsApiFilmsDTO result = starWarsService.listarPlanetas();
+        PlanetStarWarsApiFilmsDTO result = starWarsService.getAllPlanets();
 
         assertNotNull(result);
     }
 
     @Test
-    void deveLancarErrorQuandoNaChamadaExternaParaBuscarPlanetasObtiverAlgumError() {
-        when(restTemplate.getForObject((String) isNull(), eq(PlanetaStarWarsApiFilmsDTO.class)))
+    void shouldThrowStarWarsExceptionWhenAnExternalCallToSearchForPlanetsReceivesAnError() {
+        when(restTemplate.getForObject((String) isNull(), eq(PlanetStarWarsApiFilmsDTO.class)))
                 .thenThrow(new HttpClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR));
 
-        assertThrows(StarWarsException.class, () -> starWarsService.listarPlanetas());
+        assertThrows(StarWarsException.class, () -> starWarsService.getAllPlanets());
     }
 
     @Test
-    void deveRetornaPlanetaCorrespondeteAoIdInformado() {
+    void shouldReturnPlanetCorrespondingToTheIdInformed() {
         Long id = 1L;
-        PlanetaStarWarsApiDTO planeta = new PlanetaStarWarsApiDTO();
-        when(restTemplate.getForObject(anyString(), eq(PlanetaStarWarsApiDTO.class), eq(id)))
-                .thenReturn(planeta);
+        PlanetStarWarsApiDTO planet = new PlanetStarWarsApiDTO();
+        when(restTemplate.getForObject(anyString(), eq(PlanetStarWarsApiDTO.class), eq(id)))
+                .thenReturn(planet);
 
-        PlanetaStarWarsApiDTO result = starWarsService.listarPorId(id);
+        PlanetStarWarsApiDTO result = starWarsService.getById(id);
 
-        assertEquals(planeta, result);
+        assertEquals(planet, result);
     }
 
     @Test
-    void deveLancarErrorQuandoNaoEncontrarPlanetaComIdCorresponde() {
+    void shouldThrowStarWarsExceptionWhenNotFindingPlanetWithIdMatches() {
         Long id = 1L;
-        when(restTemplate.getForObject(anyString(), eq(PlanetaStarWarsApiDTO.class), eq(id)))
+        when(restTemplate.getForObject(anyString(), eq(PlanetStarWarsApiDTO.class), eq(id)))
                 .thenThrow(new HttpClientErrorException(HttpStatus.NOT_FOUND));
 
-        assertThrows(StarWarsException.class, () -> starWarsService.listarPorId(id));
+        assertThrows(StarWarsException.class, () -> starWarsService.getById(id));
     }
 
     @Test
-    void deveRetornarPlanetaCorrespondenteAoNomeInformado() {
-        String nome = "Tatooine";
-        PlanetaStarWarsApiFilmsDTO planeta = new PlanetaStarWarsApiFilmsDTO();
-        when(restTemplate.getForObject(anyString(), eq(PlanetaStarWarsApiFilmsDTO.class), eq(nome)))
-                .thenReturn(planeta);
+    void shouldReturnPlanetCorrespondingToTheNameInformed() {
+        String name = "Tatooine";
+        PlanetStarWarsApiFilmsDTO planet = new PlanetStarWarsApiFilmsDTO();
+        when(restTemplate.getForObject(anyString(), eq(PlanetStarWarsApiFilmsDTO.class), eq(name)))
+                .thenReturn(planet);
 
-        PlanetaStarWarsApiFilmsDTO result = starWarsService.listarPorNome(nome);
+        PlanetStarWarsApiFilmsDTO result = starWarsService.getByName(name);
 
-        assertEquals(planeta, result);
+        assertEquals(planet, result);
     }
 
     @Test
-    void deveLancarErrorQuandoNaoEncontrarPlanetaComNomeCorresponde() {
-        String nome = "Tatooine";
-        when(restTemplate.getForObject(anyString(), eq(PlanetaStarWarsApiFilmsDTO.class), eq(nome)))
+    void shouldThrowStarWarsExceptionWhenNotFindingPlanetWithNameMatches() {
+        String name = "Tatooine";
+        when(restTemplate.getForObject(anyString(), eq(PlanetStarWarsApiFilmsDTO.class), eq(name)))
                 .thenThrow(new HttpClientErrorException(HttpStatus.NOT_FOUND));
 
-        assertThrows(StarWarsException.class, () -> starWarsService.listarPorNome(nome));
+        assertThrows(StarWarsException.class, () -> starWarsService.getByName(name));
     }
 }

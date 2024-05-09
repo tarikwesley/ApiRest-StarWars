@@ -3,8 +3,8 @@ services:
   springboot:
     build: .
     environment:
-      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/starwarsapi
-    container_name: apirest-starwars
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/starwars
+    container_name: starwars-rest-api
     ports:
       - 8081:8080
     depends_on:
@@ -15,10 +15,10 @@ services:
       - spring-mongo-net
   mongo:
     image: mongo:latest
-    container_name: apirest-starwars-mongodb
+    container_name: starwars-mongodb
     ports:
       - 27017:27017
-    command: mongod --logpath=/dev/null # --quiet
+    command: mongod --logpath=/dev/null
     networks:
       - spring-mongo-net
 networks:

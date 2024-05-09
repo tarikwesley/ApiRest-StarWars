@@ -11,7 +11,6 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PlanetaStarWarsApiDTO {
-    private String name;
-    private List<String> films;
+public class PlanetStarWarsApiFilmsDTO {
+    private List<PlanetStarWarsApiDTO> results;
 }
